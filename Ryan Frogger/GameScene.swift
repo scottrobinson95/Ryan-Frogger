@@ -25,29 +25,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var ufromRight = Bool()
     var uwidth = CGFloat()
     
-    var carTimer1: Timer!
-    var carTimer2: Timer!
+    var rowTimer1: Timer!
+    var rowTimer2: Timer!
+    var rowTimer3: Timer!
+    var rowTimer4: Timer!
+    var rowTimer5: Timer!
+    var rowTimer6: Timer!
+    var rowTimer7: Timer!
+    var rowTimer8: Timer!
+    var rowTimer9: Timer!
+    var rowTimer10: Timer!
+    var rowTimer11: Timer!
+    var rowTimer12: Timer!
+    var rowTimer13: Timer!
+    var movingRows: Int = 1
+    
     override func didMove(to view: SKView)
     {
         physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         unit = frame.height/15
-        swipeRightRec.addTarget(self, action: #selector(GameScene.swipedRight) )
+        swipeRightRec.addTarget(self, action: #selector(GameScene.swipedRight))
         swipeRightRec.direction = .right
         self.view!.addGestureRecognizer(swipeRightRec)
-        swipeLeftRec.addTarget(self, action: #selector(GameScene.swipedLeft) )
+        swipeLeftRec.addTarget(self, action: #selector(GameScene.swipedLeft))
         swipeLeftRec.direction = .left
         self.view!.addGestureRecognizer(swipeLeftRec)
-        swipeUpRec.addTarget(self, action: #selector(GameScene.swipedUp) )
+        swipeUpRec.addTarget(self, action: #selector(GameScene.swipedUp))
         swipeUpRec.direction = .up
         self.view!.addGestureRecognizer(swipeUpRec)
-        swipeDownRec.addTarget(self, action: #selector(GameScene.swipedDown) )
+        swipeDownRec.addTarget(self, action: #selector(GameScene.swipedDown))
         swipeDownRec.direction = .down
         self.view!.addGestureRecognizer(swipeDownRec)
         makeFrog()
-        makeLane(laneRow: 3, laneSpeed: 5.0, laneFromRight: true, laneCarWidth: 2, interval: 2.0)
-        makeLane(laneRow: 5, laneSpeed: 4.0, laneFromRight: false, laneCarWidth: 3, interval: 4.0)
-        
+        makeLane(laneRow: 2, laneSpeed: 5.0, laneFromRight: true, laneCarWidth: 2, interval: 2.0)
+        movingRows += 1
+        makeLogRiver(rivRow: 3, rivSpeed: 4, rivFromRight: false, rivLogWidth: 3, interval: 4.0)
     }
     
     func swipedRight()
@@ -147,24 +160,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         log.size = CGSize(width: unit*logWidth, height: unit)
         log.physicsBody = SKPhysicsBody(rectangleOf: log.size)
         log.physicsBody?.affectedByGravity = false
-        log.physicsBody?.isDynamic = true
+        log.physicsBody?.isDynamic = false
         log.physicsBody?.contactTestBitMask = (log.physicsBody?.collisionBitMask)!
-
         if fromRight == true
         {
-            log.position = CGPoint(x: frame.maxX, y: row*(unit))
+            log.position = CGPoint(x: frame.maxX, y: frame.minY+row*(unit))
             let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: speed)
             addChild(log)
             log.run(scroll)
+            
         }
         if fromRight == false
         {
-            log.position = CGPoint(x: frame.minX*1.5, y: row*(unit))
-            //let scroll = SKAction.moveBy(x: frame.width, y: 0, duration: speed)
+            log.position = CGPoint(x: frame.minX, y: frame.minY+row*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: speed)
             addChild(log)
-            //log.run(scroll)
+            log.run(scroll)
+            
         }
-        addChild(log)
     }
     
     func makeLane(laneRow: CGFloat, laneSpeed: TimeInterval, laneFromRight: Bool, laneCarWidth: CGFloat, interval: TimeInterval)
@@ -173,10 +186,60 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         uspeed = laneSpeed
         ufromRight = laneFromRight
         uwidth = laneCarWidth
-        let carTimer1 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounter), userInfo: nil, repeats: true)
+        switch movingRows
+        {
+        case 1 : rowTimer1 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+            print("lane one")
+        case 2 : rowTimer2 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+            print("lane two")
+        case 3 : rowTimer3 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+        case 4 : rowTimer4 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+        case 5 : rowTimer5 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+        case 6 : rowTimer6 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+        case 7 : rowTimer7 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+        case 8 : rowTimer8 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+        case 9 : rowTimer9 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+        case 10 : rowTimer10 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+        case 11 : rowTimer11 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+        case 12 : rowTimer12 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+        case 13 : rowTimer13 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterCars), userInfo: nil, repeats: true)
+
+        default : break
+
+        }
     }
-    func updateCounter()
+    func makeLogRiver(rivRow: CGFloat, rivSpeed: TimeInterval, rivFromRight: Bool, rivLogWidth: CGFloat, interval: TimeInterval)
+    {
+        urow = rivRow
+        uspeed = rivSpeed
+        ufromRight = rivFromRight
+        uwidth = rivLogWidth
+        switch movingRows
+        {
+        case 1 : rowTimer1 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        case 2 : rowTimer2 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        case 3 : rowTimer3 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        case 4 : rowTimer4 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        case 5 : rowTimer5 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        case 6 : rowTimer6 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        case 7 : rowTimer7 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        case 8 : rowTimer8 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        case 9 : rowTimer9 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        case 10 : rowTimer10 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        case 11 : rowTimer11 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        case 12 : rowTimer12 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        case 13 : rowTimer13 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounterLogs), userInfo: nil, repeats: true)
+        default: break
+        }
+    }
+    
+    func updateCounterCars()
     {
         makeCars(row: urow, speed: uspeed, fromRight: ufromRight, carWidth: uwidth)
     }
+    func updateCounterLogs()
+    {
+        makeLogs(row: urow, speed: uspeed, fromRight: ufromRight, logWidth: uwidth)
+    }
+    
 }
