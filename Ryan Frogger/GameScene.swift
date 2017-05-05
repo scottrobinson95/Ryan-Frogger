@@ -15,15 +15,62 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var frog = SKSpriteNode(color: UIColor.orange, size: CGSize(width: 50, height: 50))
     var unit = CGFloat()
     
+    let swipeRightRec = UISwipeGestureRecognizer()
+    let swipeLeftRec = UISwipeGestureRecognizer()
+    let swipeUpRec = UISwipeGestureRecognizer()
+    let swipeDownRec = UISwipeGestureRecognizer()
+    
+    var urow = CGFloat()
+    var uspeed = TimeInterval()
+    var ufromRight = Bool()
+    var uwidth = CGFloat()
+    
+    var carTimer1: Timer!
+    var carTimer2: Timer!
     override func didMove(to view: SKView)
     {
         physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         unit = frame.height/15
+        swipeRightRec.addTarget(self, action: #selector(GameScene.swipedRight) )
+        swipeRightRec.direction = .right
+        self.view!.addGestureRecognizer(swipeRightRec)
+        swipeLeftRec.addTarget(self, action: #selector(GameScene.swipedLeft) )
+        swipeLeftRec.direction = .left
+        self.view!.addGestureRecognizer(swipeLeftRec)
+        swipeUpRec.addTarget(self, action: #selector(GameScene.swipedUp) )
+        swipeUpRec.direction = .up
+        self.view!.addGestureRecognizer(swipeUpRec)
+        swipeDownRec.addTarget(self, action: #selector(GameScene.swipedDown) )
+        swipeDownRec.direction = .down
+        self.view!.addGestureRecognizer(swipeDownRec)
         makeFrog()
-        makeLane(laneRow: 3, laneSpeed: 10.0, laneFromRight: true, laneCarWidth: 30, interval: 2.0)
+        makeLane(laneRow: 3, laneSpeed: 5.0, laneFromRight: true, laneCarWidth: 2, interval: 2.0)
+        makeLane(laneRow: 5, laneSpeed: 4.0, laneFromRight: false, laneCarWidth: 3, interval: 4.0)
         
     }
+    
+    func swipedRight()
+    {
+        let hop = SKAction.moveBy(x: unit, y: 0, duration: 0.15)
+        frog.run(hop)
+    }
+    
+    func swipedLeft()
+    {
+        let hop = SKAction.moveBy(x: -unit, y: 0, duration: 0.15)
+        frog.run(hop)    }
+    
+    func swipedUp()
+    {
+        let hop = SKAction.moveBy(x: 0, y: unit, duration: 0.15)
+        frog.run(hop)
+    }
+    
+    func swipedDown()
+    {
+        let hop = SKAction.moveBy(x: 0, y: -unit, duration: 0.15)
+        frog.run(hop)    }
     
     func didBegin(_ contact: SKPhysicsContact)
     {
@@ -34,23 +81,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
     }
     
-    func touchDown(atPoint pos : CGPoint) {
-    }
-    
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        
-    }
-    
-    func touchUp(atPoint pos : CGPoint)
-    {
-        
-    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        let hop = SKAction.moveBy(x: 0, y: unit, duration: 0.15)
-        frog.run(hop)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -136,10 +169,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     func makeLane(laneRow: CGFloat, laneSpeed: TimeInterval, laneFromRight: Bool, laneCarWidth: CGFloat, interval: TimeInterval)
     {
-        let carTimer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounter), userInfo: nil, repeats: true)
+        urow = laneRow
+        uspeed = laneSpeed
+        ufromRight = laneFromRight
+        uwidth = laneCarWidth
+        let carTimer1 = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateCounter), userInfo: nil, repeats: true)
     }
     func updateCounter()
     {
-        makeCars(row: 5, speed: 5.0, fromRight: true, carWidth: 2)
+        makeCars(row: urow, speed: uspeed, fromRight: ufromRight, carWidth: uwidth)
     }
 }
