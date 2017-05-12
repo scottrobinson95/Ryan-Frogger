@@ -35,6 +35,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var rowTimer11: Timer!
     var rowTimer12: Timer!
     var rowTimer13: Timer!
+    
+    var fromRight1 = Bool
+    var fromRight2 = Bool
+    var fromRight3 = Bool
+    var fromRight4 = Bool
+    var fromRight5 = Bool
+    var fromRight6 = Bool
+    var fromRight7 = Bool
+    var fromRight8 = Bool
+    var fromRight9 = Bool
+    var fromRight10 = Bool
+    var fromRight11 = Bool
+    var fromRight12 = Bool
+    var fromRight13 = Bool
+    var fromRight14 = Bool
+
     var movingRows: Int = 1
     
     override func didMove(to view: SKView)
@@ -129,7 +145,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     func makeRows()
     {
-        let carOrLog = randomNumber(MIN: 1, MAX: 2)
+        let carOrLog = 1
         let fromRight = randomNumber(MIN: 1, MAX: 2)
         let speed = randomNumber(MIN: 8, MAX: 10)
         let size = randomNumber(MIN: 1, MAX: 3)
