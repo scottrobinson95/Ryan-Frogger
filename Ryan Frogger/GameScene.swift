@@ -138,6 +138,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         speed12 = randomNumber(MIN: 5, MAX: 8)
         speed13 = randomNumber(MIN: 5, MAX: 8)
         makeFrog()
+        makeTopBorder()
         repeatRows()
     }
     
@@ -217,20 +218,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     func makeTopBorder()
     {
-        let topBorder = SKSpriteNode(color: UIColor.green, size: CGSize(width: frame.width, height: unit/2))
+        let topBorder = SKSpriteNode(color: UIColor.green, size: CGSize(width: frame.width, height: unit))
         topBorder.name = "topBorder"
         topBorder.position = CGPoint(x: frame.midX, y: frame.maxY)
         topBorder.physicsBody = SKPhysicsBody(rectangleOf: topBorder.size)
         topBorder.physicsBody?.affectedByGravity = false
         topBorder.physicsBody?.isDynamic = false
         topBorder.physicsBody?.contactTestBitMask = (topBorder.physicsBody?.collisionBitMask)!
-        
+        addChild(topBorder)
         
     }
     
     func makeRow1()
     {
-            let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+            let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size1), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -257,7 +258,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     func makeRow2()
     {
         
-        let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+        let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size2), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -283,7 +284,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         func makeRow3()
         {
-            let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+            let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size3), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -310,7 +311,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         func makeRow4()
         {
             
-        let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+            let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size4), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -337,7 +338,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         func makeRow5()
         {
             
-        let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+            let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size5), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -364,7 +365,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         func makeRow6()
         {
     
-        let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+            let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size6), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -390,7 +391,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         func makeRow7()
         {
-            let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+            let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size7), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -416,7 +417,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         func makeRow8()
         {
-            let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+            let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size8), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -442,7 +443,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         func makeRow9()
         {
-            let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+            let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size9), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -469,7 +470,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         func makeRow10()
         {
             
-        let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+            let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size10), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -495,7 +496,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         func makeRow11()
         {
-            let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+            let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size11), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -521,7 +522,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         func makeRow12()
         {
-            let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+            let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size12), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -547,7 +548,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         func makeRow13()
         {
-            let car = SKSpriteNode(color: UIColor.red, size: CGSize(width: unit, height: unit))
+            let car = SKSpriteNode(imageNamed: "car")
             car.name = "car"
             car.size = CGSize(width: unit*CGFloat(size13), height: unit)
             car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
@@ -589,10 +590,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         rowTimer13 = Timer.scheduledTimer(timeInterval: TimeInterval(randomNumber(MIN: 4, MAX: 7)), target: self, selector: #selector(self.makeRow13), userInfo: nil, repeats: true)
 
     }
+    func killTimers()
+    {
+        rowTimer1.invalidate()
+        rowTimer2.invalidate()
+        rowTimer3.invalidate()
+        rowTimer4.invalidate()
+        rowTimer5.invalidate()
+        rowTimer6.invalidate()
+        rowTimer7.invalidate()
+        rowTimer8.invalidate()
+        rowTimer9.invalidate()
+        rowTimer10.invalidate()
+        rowTimer11.invalidate()
+        rowTimer12.invalidate()
+        rowTimer13.invalidate()
+
+    }
     func reset()
     {
         removeAllChildren()
+        killTimers()
         makeFrog()
         repeatRows()
+        makeTopBorder()
     }
 }
