@@ -12,7 +12,7 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate
 {
     
-    var frog = SKSpriteNode(color: UIColor.orange, size: CGSize(width: 50, height: 50))
+    var frog = SKSpriteNode(imageNamed: "Grogger")
     var unit = CGFloat()
     
     let swipeRightRec = UISwipeGestureRecognizer()

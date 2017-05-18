@@ -12,9 +12,19 @@ import GameplayKit
 
 class GameViewController: UIViewController {
     
+    @IBOutlet weak var titleImage: UIImageView!
+    @IBOutlet weak var startButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = UIColor.black
+        titleImage.image = UIImage(named: "title")
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    @IBAction func startButtonTapped(_ sender: UIButton)
+    {
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
@@ -29,11 +39,9 @@ class GameViewController: UIViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
+            startButton.isHidden = true
+            titleImage.isHidden = true
         }
-    }
-    
-    override var shouldAutorotate: Bool {
-        return true
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
