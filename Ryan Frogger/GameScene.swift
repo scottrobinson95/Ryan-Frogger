@@ -78,6 +78,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var size12 : Int = 0
     var size13 : Int = 0
     
+    var rowType1 : Int = 0
+    var rowType2 : Int = 0
+    var rowType3 : Int = 0
+    var rowType4 : Int = 0
+    var rowType5 : Int = 0
+    var rowType6 : Int = 0
+    var rowType7 : Int = 0
+    var rowType8 : Int = 0
+    var rowType9 : Int = 0
+    var rowType10 : Int = 0
+    var rowType11 : Int = 0
+    var rowType12 : Int = 0
+    var rowType13 : Int = 0
+    
 
     var movingRows: Int = 1
     
@@ -137,6 +151,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         speed11 = randomNumber(MIN: 5, MAX: 8)
         speed12 = randomNumber(MIN: 5, MAX: 8)
         speed13 = randomNumber(MIN: 5, MAX: 8)
+        rowType1 = randomNumber(MIN:1, MAX: 3)
+        rowType2 = randomNumber(MIN:1, MAX: 3)
+        rowType3 = randomNumber(MIN:1, MAX: 3)
+        rowType4 = randomNumber(MIN:1, MAX: 3)
+        rowType5 = randomNumber(MIN:1, MAX: 3)
+        rowType6 = randomNumber(MIN:1, MAX: 3)
+        rowType7 = randomNumber(MIN:1, MAX: 3)
+        rowType8 = randomNumber(MIN:1, MAX: 3)
+        rowType9 = randomNumber(MIN:1, MAX: 3)
+        rowType10 = randomNumber(MIN:1, MAX: 3)
+        rowType11 = randomNumber(MIN:1, MAX: 3)
+        rowType12 = randomNumber(MIN:1, MAX: 3)
+        rowType13 = randomNumber(MIN:1, MAX: 3)
+
         makeFrog()
         makeTopBorder()
         repeatRows()
@@ -231,347 +259,375 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     func makeRow1()
     {
-            let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size1), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        var car = SKSpriteNode(imageNamed: "carright")
+        car.name = "car"
+
+        if rowType1 == 1
+        {
             if fromRight1 == 1
             {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+2*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed1))
-                addChild(car)
-                car.run(scroll)
+                car = SKSpriteNode(imageNamed: "carright")
             }
             else
             {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+2*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed1))
-                addChild(car)
-                car.run(scroll)
-        
+                car = SKSpriteNode(imageNamed: "carleft")
             }
+        }
+        if rowType1 == 2
+        {
+            car = SKSpriteNode(imageNamed: "water")
+            let car2 = SKSpriteNode(imageNamed: "water")
+            let car3 = SKSpriteNode(imageNamed: "water")
+            let car4 = SKSpriteNode(imageNamed: "water")
+            if size1 == 1
+            {
+                
+            }
+            
+            
+        }
+        if rowType1 == 1
+        {
+        car.size = CGSize(width: unit*CGFloat(size1), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+
+        if fromRight1 == 1
+        {
+            
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+2*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed1))
+            addChild(car)
+            car.run(scroll)
+        }
+        else
+        {
+            car.position = CGPoint(x: frame.minX, y: frame.minY+2*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed1))
+            addChild(car)
+            car.run(scroll)
+    
+        }
+        }
     }
     func makeRow2()
     {
         
         let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size2), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
-            if fromRight2 == 1
-            {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+3*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed2))
-                addChild(car)
-                car.run(scroll)
-            }
-            else
-            {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+3*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed2))
-                addChild(car)
-                car.run(scroll)
-                
-            }
-        }
-        func makeRow3()
-        {
-            let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size3), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
-            if fromRight3 == 1
-            {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+4*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed3))
-                addChild(car)
-                car.run(scroll)
-            }
-            else
-            {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+4*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed3))
-                addChild(car)
-                car.run(scroll)
-                
-            }
-        }
-        func makeRow4()
+        car.name = "car"
+        car.size = CGSize(width: unit*CGFloat(size2), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        if fromRight2 == 1
         {
             
-            let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size4), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
-            if fromRight4 == 1
-            {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+5*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed4))
-                addChild(car)
-                car.run(scroll)
-            }
-            else
-            {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+5*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed4))
-                addChild(car)
-                car.run(scroll)
-                
-            }
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+3*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed2))
+            addChild(car)
+            car.run(scroll)
         }
-        func makeRow5()
+        else
+        {
+            car.position = CGPoint(x: frame.minX, y: frame.minY+3*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed2))
+            addChild(car)
+            car.run(scroll)
+            
+        }
+    }
+    func makeRow3()
+    {
+        let car = SKSpriteNode(imageNamed: "car")
+        car.name = "car"
+        car.size = CGSize(width: unit*CGFloat(size3), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        if fromRight3 == 1
         {
             
-            let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size5), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
-            if fromRight5 == 1
-            {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+6*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed5))
-                addChild(car)
-                car.run(scroll)
-            }
-            else
-            {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+6*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed5))
-                addChild(car)
-                car.run(scroll)
-                
-            }
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+4*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed3))
+            addChild(car)
+            car.run(scroll)
         }
-        func makeRow6()
+        else
         {
-    
-            let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size6), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
-            if fromRight6 == 1
-            {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+7*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed6))
-                addChild(car)
-                car.run(scroll)
-            }
-            else
-            {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+7*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed6))
-                addChild(car)
-                car.run(scroll)
-                
-            }
+            car.position = CGPoint(x: frame.minX, y: frame.minY+4*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed3))
+            addChild(car)
+            car.run(scroll)
+            
         }
-        func makeRow7()
-        {
-            let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size7), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
-            if fromRight7 == 1
-            {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+8*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed7))
-                addChild(car)
-                car.run(scroll)
-            }
-            else
-            {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+8*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed7))
-                addChild(car)
-                car.run(scroll)
-                
-            }
-        }
-        func makeRow8()
-        {
-            let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size8), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
-            if fromRight8 == 1
-            {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+9*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed8))
-                addChild(car)
-                car.run(scroll)
-            }
-            else
-            {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+9*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed8))
-                addChild(car)
-                car.run(scroll)
-                
-            }
-        }
-        func makeRow9()
-        {
-            let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size9), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
-            if fromRight9 == 1
-            {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+10*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed9))
-                addChild(car)
-                car.run(scroll)
-            }
-            else
-            {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+10*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed9))
-                addChild(car)
-                car.run(scroll)
-                
-            }
-        }
-        func makeRow10()
+    }
+    func makeRow4()
+    {
+        
+        let car = SKSpriteNode(imageNamed: "car")
+        car.name = "car"
+        car.size = CGSize(width: unit*CGFloat(size4), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        if fromRight4 == 1
         {
             
-            let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size10), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
-            if fromRight10 == 1
-            {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+11*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed10))
-                addChild(car)
-                car.run(scroll)
-            }
-            else
-            {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+11*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed10))
-                addChild(car)
-                car.run(scroll)
-                
-            }
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+5*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed4))
+            addChild(car)
+            car.run(scroll)
         }
-        func makeRow11()
+        else
         {
-            let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size11), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
-            if fromRight11 == 1
-            {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+12*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed11))
-                addChild(car)
-                car.run(scroll)
-            }
-            else
-            {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+12*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed11))
-                addChild(car)
-                car.run(scroll)
-                
-            }
+            car.position = CGPoint(x: frame.minX, y: frame.minY+5*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed4))
+            addChild(car)
+            car.run(scroll)
+            
         }
-        func makeRow12()
+    }
+    func makeRow5()
+    {
+        
+        let car = SKSpriteNode(imageNamed: "car")
+        car.name = "car"
+        car.size = CGSize(width: unit*CGFloat(size5), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        if fromRight5 == 1
         {
-            let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size12), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
-            if fromRight12 == 1
-            {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+13*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed12))
-                addChild(car)
-                car.run(scroll)
-            }
-            else
-            {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+13*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed12))
-                addChild(car)
-                car.run(scroll)
-               
-            }
+            
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+6*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed5))
+            addChild(car)
+            car.run(scroll)
         }
-        func makeRow13()
+        else
         {
-            let car = SKSpriteNode(imageNamed: "car")
-            car.name = "car"
-            car.size = CGSize(width: unit*CGFloat(size13), height: unit)
-            car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
-            car.physicsBody?.affectedByGravity = false
-            car.physicsBody?.isDynamic = false
-            car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
-            if fromRight13 == 1
-            {
-                
-                car.position = CGPoint(x: frame.maxX, y: frame.minY+14*(unit))
-                let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed13))
-                addChild(car)
-                car.run(scroll)
-            }
-            else
-            {
-                car.position = CGPoint(x: frame.minX, y: frame.minY+14*(unit))
-                let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed13))
-                addChild(car)
-                car.run(scroll)
-                
-            }
+            car.position = CGPoint(x: frame.minX, y: frame.minY+6*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed5))
+            addChild(car)
+            car.run(scroll)
+            
         }
+    }
+    func makeRow6()
+    {
+            let car = SKSpriteNode(imageNamed: "car")
+        car.name = "car"
+        car.size = CGSize(width: unit*CGFloat(size6), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        if fromRight6 == 1
+        {
+            
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+7*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed6))
+            addChild(car)
+            car.run(scroll)
+        }
+        else
+        {
+            car.position = CGPoint(x: frame.minX, y: frame.minY+7*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed6))
+            addChild(car)
+            car.run(scroll)
+            
+        }
+    }
+    func makeRow7()
+    {
+        let car = SKSpriteNode(imageNamed: "car")
+        car.name = "car"
+        car.size = CGSize(width: unit*CGFloat(size7), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        if fromRight7 == 1
+        {
+            
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+8*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed7))
+            addChild(car)
+            car.run(scroll)
+        }
+        else
+        {
+            car.position = CGPoint(x: frame.minX, y: frame.minY+8*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed7))
+            addChild(car)
+            car.run(scroll)
+            
+        }
+    }
+    func makeRow8()
+    {
+        let car = SKSpriteNode(imageNamed: "car")
+        car.name = "car"
+        car.size = CGSize(width: unit*CGFloat(size8), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        if fromRight8 == 1
+        {
+            
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+9*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed8))
+            addChild(car)
+            car.run(scroll)
+        }
+        else
+        {
+            car.position = CGPoint(x: frame.minX, y: frame.minY+9*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed8))
+            addChild(car)
+            car.run(scroll)
+            
+        }
+    }
+    func makeRow9()
+    {
+        let car = SKSpriteNode(imageNamed: "car")
+        car.name = "car"
+        car.size = CGSize(width: unit*CGFloat(size9), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        if fromRight9 == 1
+        {
+            
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+10*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed9))
+            addChild(car)
+            car.run(scroll)
+        }
+        else
+        {
+            car.position = CGPoint(x: frame.minX, y: frame.minY+10*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed9))
+            addChild(car)
+            car.run(scroll)
+            
+        }
+    }
+    func makeRow10()
+    {
+        
+        let car = SKSpriteNode(imageNamed: "car")
+        car.name = "car"
+        car.size = CGSize(width: unit*CGFloat(size10), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        if fromRight10 == 1
+        {
+            
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+11*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed10))
+            addChild(car)
+            car.run(scroll)
+        }
+        else
+        {
+            car.position = CGPoint(x: frame.minX, y: frame.minY+11*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed10))
+            addChild(car)
+            car.run(scroll)
+            
+        }
+    }
+    func makeRow11()
+    {
+        let car = SKSpriteNode(imageNamed: "car")
+        car.name = "car"
+        car.size = CGSize(width: unit*CGFloat(size11), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        if fromRight11 == 1
+        {
+            
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+12*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed11))
+            addChild(car)
+            car.run(scroll)
+        }
+        else
+        {
+            car.position = CGPoint(x: frame.minX, y: frame.minY+12*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed11))
+            addChild(car)
+            car.run(scroll)
+            
+        }
+    }
+    func makeRow12()
+    {
+        let car = SKSpriteNode(imageNamed: "car")
+        car.name = "car"
+        car.size = CGSize(width: unit*CGFloat(size12), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        if fromRight12 == 1
+        {
+            
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+13*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed12))
+            addChild(car)
+            car.run(scroll)
+        }
+        else
+        {
+            car.position = CGPoint(x: frame.minX, y: frame.minY+13*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed12))
+            addChild(car)
+            car.run(scroll)
+            
+        }
+    }
+    func makeRow13()
+    {
+        let car = SKSpriteNode(imageNamed: "car")
+        car.name = "car"
+        car.size = CGSize(width: unit*CGFloat(size13), height: unit)
+        car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
+        car.physicsBody?.affectedByGravity = false
+        car.physicsBody?.isDynamic = false
+        car.physicsBody?.contactTestBitMask = (car.physicsBody?.collisionBitMask)!
+        if fromRight13 == 1
+        {
+            
+            car.position = CGPoint(x: frame.maxX, y: frame.minY+14*(unit))
+            let scroll = SKAction.moveBy(x: -frame.width*1.5, y: 0, duration: TimeInterval(speed13))
+            addChild(car)
+            car.run(scroll)
+        }
+        else
+        {
+            car.position = CGPoint(x: frame.minX, y: frame.minY+14*(unit))
+            let scroll = SKAction.moveBy(x: frame.width*1.5, y: 0, duration: TimeInterval(speed13))
+            addChild(car)
+            car.run(scroll)
+            
+        }
+    }
     func repeatRows()
     {
         
