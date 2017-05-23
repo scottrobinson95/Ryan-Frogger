@@ -190,6 +190,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     func didBegin(_ contact: SKPhysicsContact)
     {
         print("splat")
+        frog.removeAllActions()
         
         
         if contact.bodyA.node?.name == "topBorder" || contact.bodyB.node?.name == "topBorder"
@@ -208,6 +209,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             livesLabel.text = "Lives: \(lives)"
             checkWin()
         }
+        
     }
     
     

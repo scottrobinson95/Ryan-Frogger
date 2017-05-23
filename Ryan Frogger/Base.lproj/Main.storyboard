@@ -35,14 +35,19 @@
                                     <action selector="startButtonTapped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="3ZK-so-W2v"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XB8-y1-0G0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XB8-y1-0G0">
                                 <rect key="frame" x="32" y="68" width="311" height="255"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="311" id="HIv-ND-fFs"/>
+                                    <constraint firstAttribute="height" constant="255" id="f0p-2u-A7Y"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="XB8-y1-0G0" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="-138" id="5Zq-QX-2eE"/>
                             <constraint firstItem="jHu-XM-eG5" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="K14-63-wZd"/>
+                            <constraint firstItem="XB8-y1-0G0" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="XEI-SU-zTK"/>
                             <constraint firstItem="jHu-XM-eG5" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" constant="155.5" id="bsg-2Q-QPd"/>
                         </constraints>
                     </view>
