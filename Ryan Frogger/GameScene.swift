@@ -20,7 +20,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     let swipeUpRec = UISwipeGestureRecognizer()
     let swipeDownRec = UISwipeGestureRecognizer()
     
-
+    var score = 0
+    var lives = 3
+    
+    let scoreLabel = SKLabelNode()
+    let livesLabel = SKLabelNode()
     
     var rowTimer1: Timer!
     var rowTimer2: Timer!
@@ -156,6 +160,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         makeFrog()
         makeTopBorder()
         repeatRows()
+        makeLabel(labelName: scoreLabel, labelText: "Score: \(score)", labelFontSize: 40, labelFontColor: UIColor.white, labelPosition: CGPoint(x: frame.minX+75, y: frame.minY+20))
+        makeLabel(labelName: livesLabel, labelText: "Lives: \(lives)", labelFontSize: 40, labelFontColor: UIColor.white, labelPosition: CGPoint(x: frame.maxX - 75, y: frame.minY+20))
     }
     
     func swipedRight()
@@ -184,14 +190,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     func didBegin(_ contact: SKPhysicsContact)
     {
         print("splat")
+        
+        
         if contact.bodyA.node?.name == "topBorder" || contact.bodyB.node?.name == "topBorder"
         {
+            
             reset()
+            score += 1
+            scoreLabel.text = "Score: \(score)"
+            
         }
-        else if contact.bodyA.node?.name == "car" || contact.bodyB.node?.name == "car"
+        if contact.bodyA.node?.name == "car" || contact.bodyB.node?.name == "car"
         {
             frog.removeFromParent()
             makeFrog()
+            lives -= 1
+            livesLabel.text = "Lives: \(lives)"
+            checkWin()
         }
     }
     
@@ -245,10 +260,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
     }
     
+    func makeLabel(labelName: SKLabelNode,labelText: String, labelFontSize: CGFloat, labelFontColor: UIColor, labelPosition: CGPoint)
+    {
+        
+        labelName.text = labelText
+        labelName.fontSize = labelFontSize
+        labelName.position = labelPosition
+        labelName.fontColor = labelFontColor
+        
+        addChild(labelName)
+    }
     func makeRow1()
     {
         var car = SKSpriteNode(imageNamed: "carright")
-        car.name = "car"
             if fromRight1 == 1
             {
                 car = SKSpriteNode(imageNamed: "carright")
@@ -257,6 +281,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             {
                 car = SKSpriteNode(imageNamed: "carleft")
             }
+        car.name = "car"
         car.size = CGSize(width: unit*CGFloat(size1), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -284,7 +309,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         
         var car = SKSpriteNode(imageNamed: "carright")
-        car.name = "car"
         if fromRight2 == 1
         {
             car = SKSpriteNode(imageNamed: "carright")
@@ -293,6 +317,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             car = SKSpriteNode(imageNamed: "carleft")
         }
+        car.name = "car"
+
         car.size = CGSize(width: unit*CGFloat(size2), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -318,7 +344,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     func makeRow3()
     {
         var car = SKSpriteNode(imageNamed: "carright")
-        car.name = "car"
         if fromRight3 == 1
         {
             car = SKSpriteNode(imageNamed: "carright")
@@ -327,6 +352,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             car = SKSpriteNode(imageNamed: "carleft")
         }
+        car.name = "car"
+
         car.size = CGSize(width: unit*CGFloat(size3), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -353,7 +380,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         
         var car = SKSpriteNode(imageNamed: "carright")
-        car.name = "car"
         if fromRight4 == 1
         {
             car = SKSpriteNode(imageNamed: "carright")
@@ -362,6 +388,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             car = SKSpriteNode(imageNamed: "carleft")
         }
+        car.name = "car"
+
         car.size = CGSize(width: unit*CGFloat(size4), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -388,7 +416,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         
         var car = SKSpriteNode(imageNamed: "carright")
-        car.name = "car"
         if fromRight5 == 1
         {
             car = SKSpriteNode(imageNamed: "carright")
@@ -397,6 +424,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             car = SKSpriteNode(imageNamed: "carleft")
         }
+        car.name = "car"
+
         car.size = CGSize(width: unit*CGFloat(size5), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -422,7 +451,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     func makeRow6()
     {
         var car = SKSpriteNode(imageNamed: "carright")
-        car.name = "car"
         if fromRight6 == 1
         {
             car = SKSpriteNode(imageNamed: "carright")
@@ -431,6 +459,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             car = SKSpriteNode(imageNamed: "carleft")
         }
+        car.name = "car"
+
         car.size = CGSize(width: unit*CGFloat(size6), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -465,6 +495,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             car = SKSpriteNode(imageNamed: "carleft")
         }
+        car.name = "car"
+
         car.size = CGSize(width: unit*CGFloat(size7), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -499,6 +531,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             car = SKSpriteNode(imageNamed: "carleft")
         }
+        car.name = "car"
+
         car.size = CGSize(width: unit*CGFloat(size8), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -533,6 +567,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             car = SKSpriteNode(imageNamed: "carleft")
         }
+        car.name = "car"
+
         car.size = CGSize(width: unit*CGFloat(size9), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -568,6 +604,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             car = SKSpriteNode(imageNamed: "carleft")
         }
+        car.name = "car"
+
         car.size = CGSize(width: unit*CGFloat(size10), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -602,6 +640,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             car = SKSpriteNode(imageNamed: "carleft")
         }
+        car.name = "car"
+
         car.size = CGSize(width: unit*CGFloat(size11), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -636,6 +676,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             car = SKSpriteNode(imageNamed: "carleft")
         }
+        car.name = "car"
+
         car.size = CGSize(width: unit*CGFloat(size12), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -670,6 +712,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             car = SKSpriteNode(imageNamed: "carleft")
         }
+        car.name = "car"
+
         car.size = CGSize(width: unit*CGFloat(size13), height: unit)
         car.physicsBody = SKPhysicsBody(rectangleOf: car.size)
         car.physicsBody?.affectedByGravity = false
@@ -747,5 +791,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         makeFrog()
         repeatRows()
         makeTopBorder()
+        makeLabel(labelName: scoreLabel, labelText: "Score: \(score)", labelFontSize: 40, labelFontColor: UIColor.white, labelPosition: CGPoint(x: frame.minX+75, y: frame.minY+20))
+        makeLabel(labelName: livesLabel, labelText: "Lives: \(lives)", labelFontSize: 40, labelFontColor: UIColor.white, labelPosition: CGPoint(x: frame.maxX - 75, y: frame.minY+20))
+    }
+    func checkWin()
+    {
+        if lives == 0
+        {
+            let gameOverAlert = UIAlertController(title: "Game Over", message: "Score: \(score)", preferredStyle: UIAlertControllerStyle.alert)
+            let resetButton = UIAlertAction(title: "Restart?", style: UIAlertActionStyle.default, handler:
+            {(sender) in
+                self.reset()
+            })
+            gameOverAlert.addAction(resetButton)
+            self.view?.window?.rootViewController?.present(gameOverAlert, animated: true, completion: nil)
+        }
     }
 }
